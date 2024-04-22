@@ -315,7 +315,7 @@ export class UmamiApiClient {
       browser?: string;
       device?: string;
       country?: string;
-      region: string;
+      region?: string;
       city?: string;
     },
   ): Promise<ApiResponse<Umami.WebsitePageviews>> {
@@ -500,7 +500,10 @@ export class UmamiApiClient {
 
   async runFunnelReport(data: {
     websiteId: string;
-    urls: string[];
+    steps: {
+      type: string;
+      value: string;
+    }[];
     window: number;
     dateRange: {
       startDate: string;
@@ -653,7 +656,7 @@ export class UmamiApiClient {
           [],
           data: {
             websiteId: string;
-            urls: string[];
+            steps: { type: string; value: string; }[];
             window: number;
             dateRange: {
               startDate: string;
@@ -828,7 +831,7 @@ export class UmamiApiClient {
             browser?: string | undefined;
             device?: string | undefined;
             country?: string | undefined;
-            region: string;
+            region?: string;
             city?: string | undefined;
           },
         ) => this.getWebsitePageviews(id, data),
